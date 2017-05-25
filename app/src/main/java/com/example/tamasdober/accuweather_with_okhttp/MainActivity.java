@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (response.isSuccessful()) {
                         String jsonData = response.body().string();
-                        Log.i(TAG, " response body: " + jsonData);
+                        Log.d(TAG, " response body: " + jsonData);
                         try {
                             Forecastday[] forecastArray = getForecastDetails(jsonData);
                             Log.i(TAG, "first forecast back " + forecastArray[0].getTitle().toString());
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject txtForecastJson = forecastPart.getJSONObject("txt_forecast");
 
         JSONArray forecastArray = txtForecastJson.getJSONArray("forecastday");
-        Log.i(TAG, " forecastArray : " + forecastArray.toString());
+        //Log.d(TAG, " forecastArray : " + forecastArray.toString());
 
         Forecastday[] forecasts = new Forecastday[forecastArray.length()];
 
