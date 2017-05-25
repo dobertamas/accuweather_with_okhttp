@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Forecastday[] mForecast;
+    //private Forecastday[] mForecast;
 
     String apiKey = "0c88855782df71ca";
-    String currentConditionsUrl = "http://api.wunderground.com/api/" + apiKey + "/conditions/q/CA/San_Francisco.json";
+    //String currentConditionsUrl = "http://api.wunderground.com/api/" + apiKey + "/conditions/q/CA/San_Francisco.json";
     String tenDaysForecastUrl = "http://api.wunderground.com/api/" + apiKey + "/forecast10day/q/CA/San_Francisco.json";
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, " response body: " + jsonData);
                         try {
                             Forecastday[] forecastArray = getForecastDetails(jsonData);
-                            Log.i(TAG, "first forecast back " + forecastArray[0].getTitle().toString());
+                            Log.i(TAG, "first forecast back " + forecastArray[0].getTitle());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
