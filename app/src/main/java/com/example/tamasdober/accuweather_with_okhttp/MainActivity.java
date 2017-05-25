@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    //private Forecastday[] mForecast;
+    private Forecastday[] forecastArray;
 
-    String apiKey = "0c88855782df71ca";
+    final String apiKey = "0c88855782df71ca";
     //String currentConditionsUrl = "http://api.wunderground.com/api/" + apiKey + "/conditions/q/CA/San_Francisco.json";
-    String tenDaysForecastUrl = "http://api.wunderground.com/api/" + apiKey + "/forecast10day/q/CA/San_Francisco.json";
+    final String tenDaysForecastUrl = "http://api.wunderground.com/api/" + apiKey + "/forecast10day/q/CA/San_Francisco.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = response.body().string();
                         Log.d(TAG, " response body: " + jsonData);
                         try {
-                            Forecastday[] forecastArray = getForecastDetails(jsonData);
+                            forecastArray = getForecastDetails(jsonData);
                             Log.i(TAG, "first forecast back " + forecastArray[0].getTitle());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -85,11 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         Forecastday[] forecasts = new Forecastday[forecastArray.length()];
 
-
         for (int x = 0; x < forecastArray.length(); x++) {
 
             JSONObject forecastItem = forecastArray.getJSONObject(x);
-
             Forecastday forecastdayLoopItem = new Forecastday();
 
             forecastdayLoopItem.setPeriod(forecastItem.getInt("period"));
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             forecastdayLoopItem.setTitle(forecastItem.getString("title"));
             forecastdayLoopItem.setFcttext(forecastItem.getString("fcttext"));
             forecastdayLoopItem.setFcttextMetric(forecastItem.getString("fcttext_metric"));
-
 
             forecasts[x] = forecastdayLoopItem;
         }

@@ -1,9 +1,5 @@
 package com.example.tamasdober.accuweather_with_okhttp;
 
-/**
- * Created by tamasdober on 5/24/17.
- */
-
 public class Forecastday {
 
     private int mPeriod;
