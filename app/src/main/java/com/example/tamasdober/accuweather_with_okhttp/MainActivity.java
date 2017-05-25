@@ -1,9 +1,11 @@
 package com.example.tamasdober.accuweather_with_okhttp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -21,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private Forecastday[] forecastArray;
+    public static final String FORECAST_ARRAY = "FORECAST_ARRAY";
+
+    private Forecastday[] mForecastArray;
 
     final String apiKey = "0c88855782df71ca";
     //String currentConditionsUrl = "http://api.wunderground.com/api/" + apiKey + "/conditions/q/CA/San_Francisco.json";
@@ -54,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = response.body().string();
                         Log.d(TAG, " response body: " + jsonData);
                         try {
-                            forecastArray = getForecastDetails(jsonData);
-                            Log.i(TAG, "first forecast back " + forecastArray[0].getTitle());
+                            mForecastArray = getForecastDetails(jsonData);
+                            Log.i(TAG, "first forecast back " + mForecastArray[0].getTitle());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -108,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
         // TODO: add an alert dialog
     }
 
+    @OnClick(R.id.forecastButton)
+    public void startForecastActivity(View view) {
+        Intent forecastIntent = new Intent(this, ForecastActivity.class);
+        forecastIntent.putExtra(FORECAST_ARRAY, mForecastArray);
+        startActivity(forecastIntent);
+    }
 
 }
 
