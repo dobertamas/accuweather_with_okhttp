@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, " response body: " + jsonData);
                         try {
                             Forecastday[] forecastArray = getForecastDetails(jsonData);
+                            Log.i(TAG, "first forecast back " + forecastArray[0].getTitle().toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private Forecastday[] getForecastDetails(String jsonData) throws JSONException {
 
         JSONObject responseJson = new JSONObject(jsonData);
-        JSONObject forecastPart = responseJson.getJSONObject("Forecastday");
+        JSONObject forecastPart = responseJson.getJSONObject("forecast");
         JSONObject txtForecastJson = forecastPart.getJSONObject("txt_forecast");
 
         JSONArray forecastArray = txtForecastJson.getJSONArray("forecastday");
@@ -89,12 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
             JSONObject forecastItem = forecastArray.getJSONObject(x);
 
-            forecasts[x].setPeriod(forecastItem.getInt("period"));
-            forecasts[x].setIcon(forecastItem.getString("icon"));
-            forecasts[x].setIcon(forecastItem.getString("icon_url"));
-            forecasts[x].setTitle(forecastItem.getString("title"));
-            forecasts[x].setFcttext(forecastItem.getString("fcttext"));
-            forecasts[x].setFcttextMetric(forecastItem.getString("fcttext_metric"));
+            Forecastday forecastdayLoopItem = new Forecastday();
+
+            forecastdayLoopItem.setPeriod(forecastItem.getInt("period"));
+            forecastdayLoopItem.setIcon(forecastItem.getString("icon"));
+            forecastdayLoopItem.setIconUrl(forecastItem.getString("icon_url"));
+            forecastdayLoopItem.setTitle(forecastItem.getString("title"));
+            forecastdayLoopItem.setFcttext(forecastItem.getString("fcttext"));
+            forecastdayLoopItem.setFcttextMetric(forecastItem.getString("fcttext_metric"));
+
+
+            forecasts[x] = forecastdayLoopItem;
         }
 
         return forecasts;
