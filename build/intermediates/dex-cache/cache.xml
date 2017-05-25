@@ -12,12 +12,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/tamasdober/Documents/maszek/accuweather_with_okhttp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/tamasdober/Documents/maszek/accuweather_with_okhttp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0235bb757b496f7d86f6ee7943ff590fbda180a8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/tamasdober/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
         <dex dex="/Users/tamasdober/Documents/maszek/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_ed020a15b9733f5260ab466f5258429c329be893/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/tamasdober/Documents/maszek/accuweather_with_okhttp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a97c0b3cb18f59160ac421d2c4e7563f6e6483a9">
+        <dex dex="/Users/tamasdober/Documents/maszek/accuweather_with_okhttp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bde8ddda3d04c48025beb7dc196f017c77d3dbdc/classes.dex" />
     </item>
     <item
         is-multidex="true"
