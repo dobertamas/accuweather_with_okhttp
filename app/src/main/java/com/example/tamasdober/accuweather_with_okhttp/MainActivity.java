@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
         // TODO: check that network is available with ConnectivityMAnager (also add new permission)
         OkHttpClient client = new OkHttpClient();
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: add an alert dialog
     }
 
-    @OnClick(R.id.forecastButton)
+    @OnClick (R.id.forecastButton)
     public void startForecastActivity(View view) {
         Intent forecastIntent = new Intent(this, ForecastActivity.class);
         forecastIntent.putExtra(FORECAST_ARRAY, mForecastArray);
