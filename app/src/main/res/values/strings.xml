@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AccuWeather_with_okhttp</string>
+    <string name="go_to_forecast">Go to forecast</string>
 </resources>

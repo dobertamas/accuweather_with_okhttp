@@ -14,7 +14,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="Go to forecast"
+        android:text="@string/go_to_forecast"
         android:textColor="@android:color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
