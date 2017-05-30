@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
     tools:background="@drawable/bg_gradient"
-    tools:context="com.example.tamasdober.accuweather_with_okhttp.ForecastActivity">
+    tools:context="com.example.tamasdober.accuweather_with_okhttp.ui.ForecastActivity">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
