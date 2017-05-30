@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         String jsonData = response.body().string();
                         Log.d(TAG, " response body: " + jsonData);
                         try {
-                            mSimpleforecastArray = getSimpleForecast(jsonData);
+                            // mSimpleforecastArray = getSimpleForecast(jsonData);
 
                             mForecastArray = getTxtForecastDetails(jsonData);
                             Log.i(TAG, "first forecast back " + mForecastArray[0].getTitle());
@@ -106,17 +106,13 @@ public class MainActivity extends AppCompatActivity {
             JSONObject simpleForecastItem = simpleForecastArray.getJSONObject(i);
             JSONObject simpleForecastItemDate = simpleForecastItem.getJSONObject("date");
             String simpleForecastItemDateEpoch = simpleForecastItemDate.getString("epoch");
+            simpleForecastLoopItem.setDate(Long.parseLong(simpleForecastItemDateEpoch));
+            Log.i(TAG, " simpleForecastItemDateEpoch: " + simpleForecastItemDateEpoch);
 
-            Log.i(TAG, " simpleForecastItemDateEpoch: " + simpleForecastItemDateEpoch.toString());
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            simpleForecasts[i] = simpleForecastLoopItem;
         }
 
-        return null;
+        return simpleForecasts;
     }
 
     private Forecastday[] getTxtForecastDetails(String jsonData) throws JSONException {
