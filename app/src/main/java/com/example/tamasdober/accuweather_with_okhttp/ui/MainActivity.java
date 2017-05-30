@@ -99,6 +99,22 @@ public class MainActivity extends AppCompatActivity {
         JSONArray simpleForecastArray = simpleForecastJson.getJSONArray("forecastday");
         Log.d(TAG, " forecastArray : " + simpleForecastArray.toString());
 
+        SimpleForecast[] simpleForecasts = new SimpleForecast[simpleForecastArray.length()];
+        for (int i = 0; i < simpleForecastArray.length(); i++) {
+            SimpleForecast simpleForecastLoopItem = new SimpleForecast();
+
+            JSONObject simpleForecastItem = simpleForecastArray.getJSONObject(i);
+            JSONObject simpleForecastItemDate = simpleForecastItem.getJSONObject("date");
+            String simpleForecastItemDateEpoch = simpleForecastItemDate.getString("epoch");
+
+            Log.i(TAG, " simpleForecastItemDateEpoch: " + simpleForecastItemDateEpoch.toString());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
 
         return null;
     }

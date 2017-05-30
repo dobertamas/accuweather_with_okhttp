@@ -12,6 +12,56 @@ public class SimpleForecast {
     private int mLowFahrenheit;
     private String mIcon;
 
+    public long getDate() {
+        return mDate;
+    }
+
+    public void setDate(long date) {
+        mDate = date;
+    }
+
+    public int getHighCelsius() {
+        return mHighCelsius;
+    }
+
+    public void setHighCelsius(int highCelsius) {
+        mHighCelsius = highCelsius;
+    }
+
+    public int getHighFahrenheit() {
+        return mHighFahrenheit;
+    }
+
+    public void setHighFahrenheit(int highFahrenheit) {
+        mHighFahrenheit = highFahrenheit;
+    }
+
+    public int getLowCelsius() {
+        return mLowCelsius;
+    }
+
+    public void setLowCelsius(int lowCelsius) {
+        mLowCelsius = lowCelsius;
+    }
+
+    public int getLowFahrenheit() {
+        return mLowFahrenheit;
+    }
+
+    public void setLowFahrenheit(int lowFahrenheit) {
+        mLowFahrenheit = lowFahrenheit;
+    }
+
+    public String getIcon() {
+        return mIcon;
+    }
+
+    public void setIcon(String icon) {
+        mIcon = icon;
+    }
+
+
+
 
 
 
