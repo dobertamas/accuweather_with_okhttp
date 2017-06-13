@@ -1,68 +1,69 @@
+
 package com.example.tamasdober.accuweather_with_okhttp.weather;
 
-public class SimpleForecast {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    // Example: http://api.wunderground.com/api/0c88855782df71ca//forecast10day/q/CA/San_Francisco.json
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    // simpleforecast | forecastday | date | epoch
-    private long mDate;
-    private int mHighCelsius;
-    private int mHighFahrenheit;
-    private int mLowCelsius;
-    private int mLowFahrenheit;
-    private String mIcon;
+import java.util.ArrayList;
+import java.util.List;
 
-    public long getDate() {
-        return mDate;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+
+@Generated("org.jsonschema2pojo")
+public class Simpleforecast implements Parcelable
+{
+
+    @SerializedName("forecastday")
+    @Expose
+    @Valid
+    private List<Forecastday_> forecastday = new ArrayList<Forecastday_>();
+    public final static Parcelable.Creator<Simpleforecast> CREATOR = new Creator<Simpleforecast>() {
+
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Simpleforecast createFromParcel(Parcel in) {
+            Simpleforecast instance = new Simpleforecast();
+            in.readList(instance.forecastday, (com.example.tamasdober.accuweather_with_okhttp.weather.Forecastday_.class.getClassLoader()));
+            return instance;
+        }
+
+        public Simpleforecast[] newArray(int size) {
+            return (new Simpleforecast[size]);
+        }
+
+    }
+    ;
+
+    /**
+     * 
+     * @return
+     *     The forecastday
+     */
+    public List<Forecastday_> getForecastday() {
+        return forecastday;
     }
 
-    public void setDate(long date) {
-        mDate = date;
+    /**
+     * 
+     * @param forecastday
+     *     The forecastday
+     */
+    public void setForecastday(List<Forecastday_> forecastday) {
+        this.forecastday = forecastday;
     }
 
-    public int getHighCelsius() {
-        return mHighCelsius;
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(forecastday);
     }
 
-    public void setHighCelsius(int highCelsius) {
-        mHighCelsius = highCelsius;
+    public int describeContents() {
+        return  0;
     }
-
-    public int getHighFahrenheit() {
-        return mHighFahrenheit;
-    }
-
-    public void setHighFahrenheit(int highFahrenheit) {
-        mHighFahrenheit = highFahrenheit;
-    }
-
-    public int getLowCelsius() {
-        return mLowCelsius;
-    }
-
-    public void setLowCelsius(int lowCelsius) {
-        mLowCelsius = lowCelsius;
-    }
-
-    public int getLowFahrenheit() {
-        return mLowFahrenheit;
-    }
-
-    public void setLowFahrenheit(int lowFahrenheit) {
-        mLowFahrenheit = lowFahrenheit;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-
-
-
-
 
 }

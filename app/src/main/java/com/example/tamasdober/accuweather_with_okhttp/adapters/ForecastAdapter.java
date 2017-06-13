@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.tamasdober.accuweather_with_okhttp.R;
 import com.example.tamasdober.accuweather_with_okhttp.weather.Forecastday;
 
-public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
+class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
     private Forecastday[] mForecastdays;
 
@@ -50,7 +50,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
         void bindForecast(Forecastday forecastday) {
             mTitleTextView.setText(forecastday.getTitle());
-            mIconImageView.setImageResource(Forecastday.getIconId(forecastday.getIcon()));
+            //mIconImageView.setImageResource(Forecastday.getIconId(forecastday.getIcon()));
 
         }
 

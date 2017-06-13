@@ -8,12 +8,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.tamasdober.accuweather_with_okhttp.R;
-import com.example.tamasdober.accuweather_with_okhttp.weather.Forecastday;
-import com.example.tamasdober.accuweather_with_okhttp.weather.SimpleForecast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.tamasdober.accuweather_with_okhttp.weather.Response;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -23,20 +20,19 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
+
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    public static final String FORECAST_ARRAY = "FORECAST_ARRAY";
+    public static final String FORECAST_DATA = "FORECAST_DATA";
 
-    private Forecastday[] mForecastArray;
-    private SimpleForecast[] mSimpleforecastArray;
 
     final String apiKey = "0c88855782df71ca";
     //String currentConditionsUrl = "http://api.wunderground.com/api/" + apiKey + "/conditions/q/CA/San_Francisco.json";
     final String tenDaysForecastUrl = "http://api.wunderground.com/api/" + apiKey + "/forecast10day/q/CA/San_Francisco.json";
+    Response mResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,23 +54,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull okhttp3.Response response) throws IOException {
 
                 try {
 
                     if (response.isSuccessful()) {
                         String jsonData = response.body().string();
                         Log.d(TAG, " response body: " + jsonData);
-                        try {
-                            // mSimpleforecastArray = getSimpleForecast(jsonData);
 
-                            mForecastArray = getTxtForecastDetails(jsonData);
-                            Log.i(TAG, "first forecast back " + mForecastArray[0].getTitle());
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        mResponse = processJsonWithGson(jsonData);
 
                     } else {
                         alertUserAboutError();
@@ -87,61 +75,15 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
     }
 
-    private SimpleForecast[] getSimpleForecast(String jsonData) throws JSONException {
 
-        JSONObject responseJson = new JSONObject(jsonData);
-        JSONObject forecastPart = responseJson.getJSONObject("forecast");
-        JSONObject simpleForecastJson = forecastPart.getJSONObject("simpleforecast");
-
-        JSONArray simpleForecastArray = simpleForecastJson.getJSONArray("forecastday");
-        Log.d(TAG, " forecastArray : " + simpleForecastArray.toString());
-
-        SimpleForecast[] simpleForecasts = new SimpleForecast[simpleForecastArray.length()];
-        for (int i = 0; i < simpleForecastArray.length(); i++) {
-            SimpleForecast simpleForecastLoopItem = new SimpleForecast();
-
-            JSONObject simpleForecastItem = simpleForecastArray.getJSONObject(i);
-            JSONObject simpleForecastItemDate = simpleForecastItem.getJSONObject("date");
-            String simpleForecastItemDateEpoch = simpleForecastItemDate.getString("epoch");
-            simpleForecastLoopItem.setDate(Long.parseLong(simpleForecastItemDateEpoch));
-            Log.i(TAG, " simpleForecastItemDateEpoch: " + simpleForecastItemDateEpoch);
-
-            simpleForecasts[i] = simpleForecastLoopItem;
-        }
-
-        return simpleForecasts;
-    }
-
-    private Forecastday[] getTxtForecastDetails(String jsonData) throws JSONException {
-
-        JSONObject responseJson = new JSONObject(jsonData);
-        JSONObject forecastPart = responseJson.getJSONObject("forecast");
-        JSONObject txtForecastJson = forecastPart.getJSONObject("txt_forecast");
-
-        JSONArray forecastArray = txtForecastJson.getJSONArray("forecastday");
-        //Log.d(TAG, " forecastArray : " + forecastArray.toString());
-
-        Forecastday[] forecasts = new Forecastday[forecastArray.length()];
-
-        for (int x = 0; x < forecastArray.length(); x++) {
-
-            JSONObject forecastItem = forecastArray.getJSONObject(x);
-            Forecastday forecastdayLoopItem = new Forecastday();
-
-            forecastdayLoopItem.setPeriod(forecastItem.getInt("period"));
-            forecastdayLoopItem.setIcon(forecastItem.getString("icon"));
-            forecastdayLoopItem.setIconUrl(forecastItem.getString("icon_url"));
-            forecastdayLoopItem.setTitle(forecastItem.getString("title"));
-            forecastdayLoopItem.setFcttext(forecastItem.getString("fcttext"));
-            forecastdayLoopItem.setFcttextMetric(forecastItem.getString("fcttext_metric"));
-
-            forecasts[x] = forecastdayLoopItem;
-        }
-
-        return forecasts;
+    private Response processJsonWithGson(String jsonData) {
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        Response response = gson.fromJson(jsonData, Response.class);
+        Log.i(TAG, " got response ");
+        return response;
 
     }
 
@@ -152,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.forecastButton)
     public void startForecastActivity(View view) {
         Intent forecastIntent = new Intent(this, ForecastActivity.class);
-        forecastIntent.putExtra(FORECAST_ARRAY, mForecastArray);
+        forecastIntent.putExtra(FORECAST_DATA, mResponse);
         startActivity(forecastIntent);
     }
 

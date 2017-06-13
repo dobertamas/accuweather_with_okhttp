@@ -1,146 +1,202 @@
+
 package com.example.tamasdober.accuweather_with_okhttp.weather;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.tamasdober.accuweather_with_okhttp.R;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-public class Forecastday implements Parcelable {
+import javax.annotation.Generated;
 
-    private int mPeriod;
-    private String mIcon;
-    private String mIconUrl;
-    private String mTitle;
+@Generated("org.jsonschema2pojo")
+public class Forecastday implements Parcelable
+{
 
-    public Forecastday() { }
+    @SerializedName("period")
+    @Expose
+    private int period;
+    @SerializedName("icon")
+    @Expose
+    private String icon;
+    @SerializedName("icon_url")
+    @Expose
+    private String iconUrl;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("fcttext")
+    @Expose
+    private String fcttext;
+    @SerializedName("fcttext_metric")
+    @Expose
+    private String fcttextMetric;
+    @SerializedName("pop")
+    @Expose
+    private String pop;
+    public final static Parcelable.Creator<Forecastday> CREATOR = new Creator<Forecastday>() {
 
-    public int getPeriod() {
-        return mPeriod;
-    }
 
-    public void setPeriod(int period) {
-        mPeriod = period;
-    }
-
-    public String getIcon() {
-        return mIcon;
-    }
-
-    public void setIcon(String icon) {
-        mIcon = icon;
-    }
-
-    public String getIconUrl() {
-        return mIconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        mIconUrl = iconUrl;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public String getFcttext() {
-        return mFcttext;
-    }
-
-    public void setFcttext(String fcttext) {
-        mFcttext = fcttext;
-    }
-
-    public String getFcttextMetric() {
-        return mFcttextMetric;
-    }
-
-    public void setFcttextMetric(String fcttextMetric) {
-        mFcttextMetric = fcttextMetric;
-    }
-
-    private String mFcttext;
-    private String mFcttextMetric;
-
-    public static int getIconId(String iconString) {
-
-        int iconId = R.drawable.clear_day;
-
-        if (iconString.equals("clear-day")) {
-            iconId = R.drawable.clear_day;
-        }
-        else if (iconString.equals("clear-night")) {
-            iconId = R.drawable.clear_night;
-        }
-        else if (iconString.equals("rain")) {
-            iconId = R.drawable.rain;
-        }
-        else if (iconString.equals("snow")) {
-            iconId = R.drawable.snow;
-        }
-        else if (iconString.equals("sleet")) {
-            iconId = R.drawable.sleet;
-        }
-        else if (iconString.equals("wind")) {
-            iconId = R.drawable.wind;
-        }
-        else if (iconString.equals("fog")) {
-            iconId = R.drawable.fog;
-        }
-        else if (iconString.equals("cloudy")) {
-            iconId = R.drawable.cloudy;
-        }
-        else if (iconString.equals("partly-cloudy-day")) {
-            iconId = R.drawable.partly_cloudy;
-        }
-        else if (iconString.equals("partly-cloudy-night")) {
-            iconId = R.drawable.cloudy_night;
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Forecastday createFromParcel(Parcel in) {
+            Forecastday instance = new Forecastday();
+            instance.period = ((int) in.readValue((int.class.getClassLoader())));
+            instance.icon = ((String) in.readValue((String.class.getClassLoader())));
+            instance.iconUrl = ((String) in.readValue((String.class.getClassLoader())));
+            instance.title = ((String) in.readValue((String.class.getClassLoader())));
+            instance.fcttext = ((String) in.readValue((String.class.getClassLoader())));
+            instance.fcttextMetric = ((String) in.readValue((String.class.getClassLoader())));
+            instance.pop = ((String) in.readValue((String.class.getClassLoader())));
+            return instance;
         }
 
-        return iconId;
-
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0; // ignore
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mPeriod);
-        dest.writeString(mIcon);
-        dest.writeString(mIconUrl);
-        dest.writeString(mTitle);
-        dest.writeString(mFcttext);
-        dest.writeString(mFcttextMetric);
-
-    }
-
-    private Forecastday(Parcel in) {
-        mPeriod = in.readInt();
-        mIcon = in.readString();
-        mIconUrl = in.readString();
-        mTitle = in.readString();
-        mFcttext = in.readString();
-        mFcttextMetric = in.readString();
-
-    }
-
-    public static final Creator<Forecastday> CREATOR = new Creator<Forecastday>() {
-        @Override
-        public Forecastday createFromParcel(Parcel source) {
-            return new Forecastday(source);
-        }
-
-        @Override
         public Forecastday[] newArray(int size) {
-            return new Forecastday[size];
+            return (new Forecastday[size]);
         }
-    };
+
+    }
+    ;
+
+    /**
+     * 
+     * @return
+     *     The period
+     */
+    public int getPeriod() {
+        return period;
+    }
+
+    /**
+     * 
+     * @param period
+     *     The period
+     */
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    /**
+     * 
+     * @return
+     *     The icon
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * 
+     * @param icon
+     *     The icon
+     */
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    /**
+     * 
+     * @return
+     *     The iconUrl
+     */
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    /**
+     * 
+     * @param iconUrl
+     *     The icon_url
+     */
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
+    /**
+     * 
+     * @return
+     *     The title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 
+     * @param title
+     *     The title
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * 
+     * @return
+     *     The fcttext
+     */
+    public String getFcttext() {
+        return fcttext;
+    }
+
+    /**
+     * 
+     * @param fcttext
+     *     The fcttext
+     */
+    public void setFcttext(String fcttext) {
+        this.fcttext = fcttext;
+    }
+
+    /**
+     * 
+     * @return
+     *     The fcttextMetric
+     */
+    public String getFcttextMetric() {
+        return fcttextMetric;
+    }
+
+    /**
+     * 
+     * @param fcttextMetric
+     *     The fcttext_metric
+     */
+    public void setFcttextMetric(String fcttextMetric) {
+        this.fcttextMetric = fcttextMetric;
+    }
+
+    /**
+     * 
+     * @return
+     *     The pop
+     */
+    public String getPop() {
+        return pop;
+    }
+
+    /**
+     * 
+     * @param pop
+     *     The pop
+     */
+    public void setPop(String pop) {
+        this.pop = pop;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(period);
+        dest.writeValue(icon);
+        dest.writeValue(iconUrl);
+        dest.writeValue(title);
+        dest.writeValue(fcttext);
+        dest.writeValue(fcttextMetric);
+        dest.writeValue(pop);
+    }
+
+    public int describeContents() {
+        return  0;
+    }
 
 }
