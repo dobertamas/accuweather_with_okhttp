@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void alertUserAboutError() {
-        // TODO: add an alert dialog
+        AlertDialogFragment dialogFragment = new AlertDialogFragment();
+        dialogFragment.show(getFragmentManager(), "error_dialog");
     }
 
     @OnClick(R.id.forecastButton)

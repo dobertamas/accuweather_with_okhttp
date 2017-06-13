@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AccuWeather_with_okhttp</string>
     <string name="go_to_forecast">Go to RecyclerView_list</string>
+    <string name="error_title">Oops! Sorry..</string>
+    <string name="error_messagge">There was an error. Please try again.</string>
+    <string name="error_positive_button">OK</string>
+    <string name="textview">TextView</string>
+    <string name="icon_image">icon image</string>
 </resources>

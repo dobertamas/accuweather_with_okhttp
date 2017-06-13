@@ -27,7 +27,7 @@ public class ForecastActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         Intent intent = getIntent();
-        Response mResponse = (Response) intent.getExtras().get(FORECAST_DATA);
+        Response mResponse = intent.getExtras().getParcelable(FORECAST_DATA);
 
         SimpleforecastAdapter adapter = new SimpleforecastAdapter(mResponse);
         mRecyclerView.setAdapter(adapter);

@@ -8,14 +8,16 @@
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:text="TextView"
+        android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
+        android:text="@string/textview"
         android:textColor="#ffffffff"
-        android:textSize="24sp"
+        android:textSize="16sp"
         tools:text="Wednesday Night"/>
 
     <ImageView
@@ -23,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/titleTextView"
-        android:layout_toRightOf="@+id/titleTextView"
-        app:srcCompat="@drawable/sunny"/>
+        android:layout_toRightOf="@id/titleTextView"
+        app:srcCompat="@drawable/sunny"
+        android:contentDescription="@string/icon_image"/>
 </RelativeLayout>
